@@ -1,11 +1,21 @@
-.homelogo {
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
+.homeContainer {
+    width: 100%;
 }
 
-.imgstyle {
-    height: 70vh;
+.homelogo {
+    margin-top: 3%;
+    margin-left: 5%;
+    padding-bottom: 10%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+
+
+.imgStyle {
+    position: fixed;
+    right: 0;
+    width: 40%;
+    height: 70%;
 }
 
 .hello {
@@ -15,7 +25,7 @@
     padding: 10px 20px;
     gap: 10px;
     border-radius: 30px;
-    margin-top: 10%;
+    margin-top: 15%;
     width: 163px;
     height: 44px;
     left: 100px;
@@ -28,22 +38,15 @@
 }
 
 .title1 {
-
-    width: 705px;
-    height: 180px;
-    left: 100px;
-
-    color: #202020;
-    font-family: 'Poppins';
-    font-style: normal;
     font-weight: 500;
-    font-size: 64px;
-    line-height: 90px;
+    font-size: 54px;
+    line-height: 60px;
+    margin-top: 5%;
 }
 
 .description {
     padding-top: 5%;
-    width: 705px;
+
     height: 48px;
     left: 100px;
     margin-top: 30%;
@@ -58,38 +61,26 @@
 }
 
 .searchform {
-    width: 1000px;
-    padding-top: 5%;
+    margin-top: 1%;
+    padding: 50px;
+    align-items: center;
 }
 
-.inputstyle1 {
-    width: 280px;
+.inputstyle {
+    width: 100%;
     border-style: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    margin-top: 20px;
 }
 
-.inputstyle2 {
-    width: 280px;
-    border-style: none;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    margin-left: 10%;
-}
 
-.inputstyle1:focus {
+
+.inputstyle:focus {
     outline: none;
 
 }
 
-.inputstyle2:focus {
-    outline: none;
-
-}
-
-.inputstyle1::placeholder {
-    color: rgba(128, 128, 128, 0.5);
-}
-
-.inputstyle2::placeholder {
+.inputstyle::placeholder {
     color: rgba(128, 128, 128, 0.5);
 }
 
@@ -97,10 +88,10 @@
 .date {
     border-style: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
-    width: 250px;
-    margin-top: 10%;
+    width: 100%;
+    margin-top: 20px;
     color: rgba(128, 128, 128, 0.5);
-    padding-bottom: 5%;
+    margin-bottom: 5%;
 }
 
 .date:focus {
@@ -110,16 +101,31 @@
 
 .buttonstyle {
     border-style: none;
-    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 16px 25px;
-    gap: 10px;
-    width: 650px;
+
+    width: 100%;
     height: 53px;
-    left: 127px;
     color: white;
     background: #0578FF;
     border-radius: 10px;
+}
+
+@media screen and (max-width:600px) {
+    .imgStyle {
+        position: unset;
+        width: 100%;
+        height: 70%;
+    }
+
+    .row {
+        display: unset !important;
+    }
+
+    .date {
+        margin-top: 0;
+    }
+
 }
