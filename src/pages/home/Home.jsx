@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Home() {
     const navigate = useNavigate();
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState();
     const [departure, setDeparture] = useState("");
     const [destination, setDestination] = useState("");
 
@@ -55,7 +55,7 @@ export default function Home() {
                             </Col>
                         </Row>
                         <Row>
-                            <Col><DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required /></Col>
+                            <Col><DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required placeholderText={new Date().toDateString()} /></Col>
                             <Col></Col>
                         </Row>
                         <Row><Col><button className="buttonstyle" type="submit" >Search for trains</button></Col></Row>
@@ -71,6 +71,7 @@ export default function Home() {
 
 
             </Col>
+
         </Row>
 
     )

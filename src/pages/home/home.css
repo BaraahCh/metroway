@@ -90,13 +90,17 @@
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
     width: 100%;
     margin-top: 20px;
-    color: rgba(128, 128, 128, 0.5);
+
     margin-bottom: 5%;
 }
 
 .date:focus {
     outline: none;
     border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.date::placeholder {
+    color: rgba(128, 128, 128, 0.5);
 }
 
 .buttonstyle {
