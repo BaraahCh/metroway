@@ -16,10 +16,6 @@ export default function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!departure || !destination) {
-            alert("All fields are required!");
-            return;
-        }
         navigate("/results?" + "departure=" + departure + "&destination=" + destination + "&date=" + date);
     }
     return (
@@ -44,6 +40,7 @@ export default function Home() {
                                     placeholder='NDLS, New Delhi Railway Staion'
                                     value={departure}
                                     onChange={(e) => setDeparture(e.target.value)}
+                                    required
                                 />
                             </Col>
                             <Col>
@@ -53,11 +50,12 @@ export default function Home() {
                                     placeholder='LJN,Lucknow Junction'
                                     value={destination}
                                     onChange={(e) => setDestination(e.target.value)}
+                                    required
                                 />
                             </Col>
                         </Row>
                         <Row>
-                            <Col><DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" /></Col>
+                            <Col><DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required /></Col>
                             <Col></Col>
                         </Row>
                         <Row><Col><button className="buttonstyle" type="submit" >Search for trains</button></Col></Row>
