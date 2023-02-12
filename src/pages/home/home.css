@@ -1,0 +1,125 @@
+.homelogo {
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.imgstyle {
+    height: 70vh;
+}
+
+.hello {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 30px;
+    margin-top: 10%;
+    width: 163px;
+    height: 44px;
+    left: 100px;
+    top: 285px;
+    color: white;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+
+}
+
+.title1 {
+
+    width: 705px;
+    height: 180px;
+    left: 100px;
+
+    color: #202020;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 64px;
+    line-height: 90px;
+}
+
+.description {
+    padding-top: 5%;
+    width: 705px;
+    height: 48px;
+    left: 100px;
+    margin-top: 30%;
+    color: #606060;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    word-wrap: break-word;
+
+}
+
+.searchform {
+    width: 1000px;
+    padding-top: 5%;
+}
+
+.inputstyle1 {
+    width: 280px;
+    border-style: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.inputstyle2 {
+    width: 280px;
+    border-style: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    margin-left: 10%;
+}
+
+.inputstyle1:focus {
+    outline: none;
+
+}
+
+.inputstyle2:focus {
+    outline: none;
+
+}
+
+.inputstyle1::placeholder {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.inputstyle2::placeholder {
+    color: rgba(128, 128, 128, 0.5);
+}
+
+
+.date {
+    border-style: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+    width: 250px;
+    margin-top: 10%;
+    color: rgba(128, 128, 128, 0.5);
+    padding-bottom: 5%;
+}
+
+.date:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+}
+
+.buttonstyle {
+    border-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 25px;
+    gap: 10px;
+    width: 650px;
+    height: 53px;
+    left: 127px;
+    color: white;
+    background: #0578FF;
+    border-radius: 10px;
+}
