@@ -1,20 +1,29 @@
 .homeContainer {
     width: 100%;
-
+    margin: 0 !important;
 }
 
 .homelogo {
     margin-left: 5%;
     padding-left: 10%;
     padding-right: 10%;
+
 }
 
 
 .imgStyle {
-    position: fixed;
-    right: 0;
-    width: 40%;
-    height: 80%;
+    width: 80%;
+    height: 106%;
+    float: right;
+    margin-left: 6%;
+}
+
+.imgcol {
+    max-height: 700px;
+    max-width: 700px;
+    min-width: 400px;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .hello {

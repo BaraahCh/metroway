@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./home.css"
-import metro from '../../images/metro.png';
+import metro1 from '../../images/metro1.png';
 import CalendarIcon from '../../images/calendar.png';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -16,7 +16,7 @@ export default function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let d = (date.getMonth() + 1)  + " " + date.getDate() + " " + date.getFullYear();
+        let d = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear();
         navigate("/results/" + departure + "/" + destination + "/" + d);
     }
     return (
@@ -73,9 +73,9 @@ export default function Home() {
                 </div >
             </Col>
 
-            <Col >
+            <Col className="imgcol">
 
-                <img className="imgStyle" src={metro} alt="metro" />
+                <img className="imgStyle" src={metro1} alt="metro" />
 
 
             </Col>
