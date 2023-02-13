@@ -5,10 +5,11 @@ import { Container, Col, Row } from "react-bootstrap";
 export default function Review() {
     return (
         <div>
+            <Topbar />
             <Container>
                 <Row>
                     <Col>
-                        <Topbar />
+
                         <span className='reviewtitle'>Review your booking</span>
                         <form className="formsstyle">
                             <h5>Traveller Details</h5>

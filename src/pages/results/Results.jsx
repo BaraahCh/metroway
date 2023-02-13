@@ -17,7 +17,7 @@ export default function Results(props) {
 
     useEffect(() => {
         getResults(origin, destination, date);
-    }, [])
+    }, [origin, destination, date])
 
     const getResults = (origin, destination, date) => {
         setLoading(true);
