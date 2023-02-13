@@ -32,3 +32,121 @@
     color: #808080;
     margin-left: 10px;
 }
+
+.scrollable {
+    height: 50vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.card {
+    padding: 15px;
+    margin: 15px;
+    min-height: 150px !important;
+    border-radius: 10px !important;
+    border: 0 !important;
+    padding-bottom: 0;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #FFFFFF;
+    border-radius: 3px;
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    width: 8px;
+    background: rgba(5, 120, 255, 0.75);
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(5, 120, 255, 1);
+}
+
+.cardDate {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.cardTime {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 10px;
+}
+
+.rectangles {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+    margin-top: 10px !important;
+}
+
+.rect {
+    border-radius: 10px;
+    width: 110px;
+    margin-right: 5px;
+    padding: 5px;
+    min-height: 40px;
+}
+
+.greenRect {
+    background: #D0FFC8;
+
+}
+
+.orangeRect {
+    background: #FFE9C8;
+
+}
+
+.pinkRect {
+    background: #FFCDCD;
+
+}
+
+.whiteRect {
+    background: white;
+    border: 2px solid #FF8888;
+}
+
+@media screen and (max-width:600px) {
+    .rect {
+        margin-top: 10px !important;
+        margin-bottom: 10px;
+    }
+
+    .mobileFlexRow {
+        display: flex !important;
+    }
+
+    .vector {
+        display: none;
+    }
+}
+
+.timeDiff {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 15px;
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.calendar {
+    margin-top: 10px;
+    width: 100%;
+}

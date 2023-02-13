@@ -23,3 +23,11 @@ code {
 .blueBackground {
   background-color: #0578FF;
 }
+
+input {
+  width: 100%;
+  border-style: none;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.5);
+  margin-top: 20px;
+  background-color: transparent;
+}

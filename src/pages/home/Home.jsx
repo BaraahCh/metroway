@@ -16,7 +16,8 @@ export default function Home() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        navigate("/results?" + "departure=" + departure + "&destination=" + destination + "&date=" + date);
+        let d = (date.getMonth() + 1)  + " " + date.getDate() + " " + date.getFullYear();
+        navigate("/results/" + departure + "/" + destination + "/" + d);
     }
     return (
 
