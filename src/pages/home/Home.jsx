@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "./home.css"
 import metro from '../../images/metro.png';
-import calendar from '../../images/calendar.png';
+import CalendarIcon from '../../images/calendar.png';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Container, Row, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import Logo from "../../components/logo/Logo";
 import { useNavigate } from "react-router-dom";
 
@@ -25,7 +25,10 @@ export default function Home() {
 
             <Col>
                 <div className='homelogo'>
-                    <Logo />
+                    <div style={{ paddingTop: "20px" }}>
+                        <Logo />
+                    </div>
+
                     <span className=" hello blueBackground">Hello Travellers</span>
                     <div className="title1">made your booking experience easy!</div><br />
                     <span className='description'>Train booking is a process of choosing and purchasing train seats online. It is an easy process but were are here to make it much better & simple.</span>
@@ -55,7 +58,11 @@ export default function Home() {
                             </Col>
                         </Row>
                         <Row>
-                            <Col><DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required placeholderText={new Date().toDateString()} /></Col>
+                            <Col>
+
+                                <DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required placeholderText={new Date().toDateString()} />
+                                <img src={CalendarIcon} className="calendarIcon" alt="Calendar Icon" />
+                            </Col>
                             <Col></Col>
                         </Row>
                         <Row><Col><button className="buttonstyle" type="submit" >Search for trains</button></Col></Row>

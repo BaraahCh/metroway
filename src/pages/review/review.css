@@ -1,0 +1,13 @@
+.reviewtitle {
+    color: #0578FF;
+    width: 336px;
+    height: 48px;
+    font-weight: 600;
+    font-size: 32px;
+    line-height: 48px;
+}
+
+.formsstyle {
+    padding: 3%;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+}

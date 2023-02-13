@@ -1,0 +1,68 @@
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: #0578FF;
+    color: white;
+    height: 200px;
+    list-style: none;
+}
+
+
+ul,
+li {
+    padding-top: 1%;
+    list-style-type: none;
+    margin-left: 4%;
+
+}
+
+.footerlogo {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    color: #202020;
+    margin-left: 20%;
+
+}
+
+.blueFont1 {
+    color: white;
+
+}
+
+.footertext {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+}
+
+.footersubscribe {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+    height: 21px;
+}
+
+.inputstyle1 {
+    border-style: none;
+    background: #0578FF;
+    border-bottom: 1px solid white;
+    width: 100%;
+}
+
+.inputstyle1::placeholder {
+    color: white;
+    font-size: 14px;
+}
+
+.inputstyle1:focus {
+    outline: none;
+
+}
+
+.iconsstyle {
+    margin-left: 30%;
+
+}
