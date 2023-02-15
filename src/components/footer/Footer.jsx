@@ -8,10 +8,10 @@ import Twitter from '../../images/twitter.png';
 export default function footer() {
     return (
         <div className='footer' >
-            <Row style={{ margin: "0.95%", padding: "1%" }}>
-                <Col>
+            <Row style={{ marginRight: "0", padding: "1%" }}>
+                <Col md={3}>
                     <div >
-                        <span className='footerlogo'><span className='blueFont1'>Metro</span>way</span>
+                        <span className='footerlogo'><span className='whiteFont'>Metro</span>way</span>
                     </div>
                 </Col>
                 <Col>
@@ -22,49 +22,52 @@ export default function footer() {
                 <Col><input className='inputstyle1' type="email" placeholder='Enter Email ID' /></Col>
             </Row>
             <div>
-                <ul class=" d-flex" >
-                    <li >
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">About us</a>
 
-                    </li>
-                    <li>
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Mobile</a>
+                <Row className='p-0 m-0 mt-3'>
+                    <Col md={7} >
+                        <Row align="center" >
 
-                    </li>
-                    <li>
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Privacy</a>
+                            <Col><a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">About us</a></Col>
 
-                    </li>
-                    <li>
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Terms of use</a>
 
-                    </li>
-                    <li>
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Career</a>
 
-                    </li>
-                    <li>
-                        <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Customer Service</a>
+                            <Col><a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Mobile</a></Col>
 
-                    </li>
-                    <div className='iconsstyle d-flex'>
-                        <li >
-                            <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">
-                                <img src={Facebook} alt="facebook" />
-                            </a>
-                        </li>
-                        <li style={{ paddingLeft: "20%" }}>
-                            <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">
-                                <img src={Instagram} alt="facebook" />
-                            </a>
-                        </li>
-                        <li style={{ paddingLeft: "20%" }}>
-                            <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">
-                                <img src={Twitter} alt="facebook" />
-                            </a>
-                        </li>
-                    </div>
-                </ul>
+
+                            <Col><a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Privacy</a></Col>
+
+
+                            <Col> <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Terms of use</a></Col>
+
+
+                            <Col>  <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Career</a></Col>
+
+
+                            <Col md={3}> <a style={{ textDecoration: "none", color: "white" }} href="https://www.google.com">Customer Service</a></Col>
+                        </Row>
+
+                    </Col>
+                    <Col className='iconsstyle d-flex flex-row justify-content-end'>
+
+
+                        <a style={{ textDecoration: "none", color: "white", marginLeft: 20 }} href="https://www.google.com">
+                            <img src={Facebook} alt="facebook" />
+                        </a>
+
+
+                        <a style={{ textDecoration: "none", color: "white", marginLeft: 20 }} href="https://www.google.com">
+                            <img src={Instagram} alt="facebook" />
+                        </a>
+
+
+                        <a style={{ textDecoration: "none", color: "white", marginLeft: 20, marginRight: 20 }} href="https://www.google.com">
+                            <img src={Twitter} alt="facebook" />
+                        </a>
+
+
+                    </Col>
+                </Row>
+
             </div >
         </div >
     )

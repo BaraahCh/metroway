@@ -1,0 +1,37 @@
+.dashedCard {
+    border: 2px dashed #0578FF;
+}
+
+.offersTitle {
+    font-weight: 500;
+    font-size: 24px;
+}
+
+.offersText {
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+.applyCodeTitle {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.applyText {
+    font-weight: 500;
+    font-size: 16px;
+    cursor: "pointer"
+}
+
+.billText {
+    font-weight: 500;
+    font-size: 12px;
+    color: #808080;
+}
+
+.totalBill {
+    font-weight: 500;
+    font-size: 20px;
+    color: #404040;
+}

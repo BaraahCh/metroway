@@ -3,8 +3,7 @@ body {
   font-family: "Poppins" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #202020;
-  margin-top: 80px
+  color: #202020 !important;
 }
 
 code {
@@ -21,7 +20,7 @@ code {
 }
 
 .blueBackground {
-  background-color: #0578FF;
+  background-color: #0578FF !important;
 }
 
 input {
@@ -30,4 +29,13 @@ input {
   border-bottom: 1px solid rgba(128, 128, 128, 0.5);
   margin-top: 20px;
   background-color: transparent;
+}
+
+input:focus {
+  outline: none;
+
+}
+
+input::placeholder {
+  color: rgba(128, 128, 128, 0.5);
 }

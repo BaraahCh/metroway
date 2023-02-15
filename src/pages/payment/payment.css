@@ -1,0 +1,20 @@
+.subTitle {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.paymentTitle {
+    font-weight: 500;
+    font-size: 16px;
+
+}
+
+.paymentSubTitle {
+    font-weight: 500;
+    font-size: 12px;
+    color: #808080;
+}
+
+.pointer {
+    cursor: pointer;
+}

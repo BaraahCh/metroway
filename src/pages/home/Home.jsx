@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./home.css"
 import metro1 from '../../images/metro1.png';
 import CalendarIcon from '../../images/calendar.png';
@@ -13,29 +13,29 @@ export default function Home() {
     const [date, setDate] = useState();
     const [departure, setDeparture] = useState("");
     const [destination, setDestination] = useState("");
+    const [passengersNb, setPassengersNb] = useState("");
+
+    useEffect(() => {
+        window.scroll(0, 0); //scroll to top of the page
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        let d = (date.getMonth() + 1) + " " + date.getDate() + " " + date.getFullYear();
-        navigate("/results/" + departure + "/" + destination + "/" + d);
+        // Save the search parameters to local storage as "searchParams" then navigate to the results list page
+        localStorage.setItem("searchParams", JSON.stringify({ departure: departure, destination: destination, date: date, passengersNb: passengersNb }));
+        navigate("/results");
     }
+
     return (
-
-
         <Row className="homeContainer">
-
             <Col>
                 <div className='homelogo'>
-                    <div style={{ paddingTop: "20px" }}>
-                        <Logo />
-                    </div>
-
+                    <div style={{ paddingTop: "20px" }}><Logo /></div>
                     <span className=" hello blueBackground">Hello Travellers</span>
                     <div className="title1">made your booking experience easy!</div><br />
                     <span className='description'>Train booking is a process of choosing and purchasing train seats online. It is an easy process but were are here to make it much better & simple.</span>
 
                     <form className='searchform' onSubmit={handleSubmit}>
-
                         <Row>
                             <Col>
                                 <input
@@ -60,27 +60,26 @@ export default function Home() {
                         </Row>
                         <Row>
                             <Col>
-
-                                <DatePicker className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMMM d, yyyy" required placeholderText={new Date().toDateString()} />
+                                <DatePicker showTimeInput className="date" selected={date} onChange={(date) => setDate(date)} dateFormat="MMM d, yyyy h:mm aa" required placeholderText={new Date().toDateString()} />
                                 <img src={CalendarIcon} className="calendarIcon" alt="Calendar Icon" />
                             </Col>
-                            <Col></Col>
+                            <Col>
+                                <select className="inputstyle date" value={passengersNb} onChange={(e) => setPassengersNb(e.target.value)} placeholder="Select Passengers Number" required>
+                                    <option value="" disabled>Passengers Number</option>
+                                    <option value={1}>1</option>
+                                    <option value={2}>2</option>
+                                    <option value={3}>3</option>
+                                    <option value={4}>4</option>
+                                </select>
+                            </Col>
                         </Row>
                         <Row><Col><button className="buttonstyle" type="submit" >Search for trains</button></Col></Row>
-
                     </form>
-
                 </div >
             </Col>
 
-            <Col className="imgcol">
-
-                <img className="imgStyle" src={metro1} alt="metro" />
-
-
-            </Col>
-
-        </Row>
+            <Col className="imgcol"><img className="imgStyle" src={metro1} alt="metro" /></Col>
+        </Row >
 
     )
 }

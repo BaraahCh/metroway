@@ -7,7 +7,7 @@ export default function Topbar() {
     return (
         <Navbar className="topbar">
             <Container className="topbarContainer">
-                <Navbar.Brand href="#home" className="me-auto my-2 my-lg-0"><Logo /></Navbar.Brand>
+                <Navbar.Brand href="/" className="me-auto my-2 my-lg-0"><Logo /></Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className="justify-content-end topLinks">
                     <Nav.Link style={{ color: "#404040" }}>My Booking</Nav.Link>

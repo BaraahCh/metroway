@@ -1,13 +1,120 @@
-.reviewtitle {
-    color: #0578FF;
-    width: 336px;
-    height: 48px;
-    font-weight: 600;
-    font-size: 32px;
-    line-height: 48px;
+.reviewbody {
+    width: 100%;
+    margin: 0 !important;
+    padding-bottom: 16px;
 }
 
-.formsstyle {
-    padding: 3%;
+.reviewtitle {
+    color: #0578FF;
+    font-weight: 600;
+    font-size: 32px;
+    margin-bottom: 2%;
+    margin-top: 2%;
+}
+
+.cardStyle {
+    padding: 5%;
     border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+.booking {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    color: rgba(128, 128, 128, 0.5);
+}
+
+.iconstyle {
+    padding: 2.5%;
+    height: 51px;
+    background: rgba(5, 120, 255, 0.1);
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 5%;
+    margin-top: 2% !important;
+}
+
+.subTitle {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+}
+
+.plusStyle {
+    background-color: rgba(5, 120, 255, 0.5);
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 20px;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    padding: auto;
+}
+
+.icons {
+    cursor: pointer;
+}
+
+.trashIcon {
+    color: #FF6060;
+    margin-left: 10px;
+}
+
+.penIcon {
+    color: #0578FF;
+}
+
+.littleTitle {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 4%;
+}
+
+select {
+    color: rgba(128, 128, 128, 0.75);
+}
+
+.links {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.addToButton {
+    border-radius: 10px;
+    background-color: transparent;
+    border: 1px solid #0578FF;
+    width: 142px;
+    height: 41px;
+}
+
+.lightBlueBackground {
+    background-color: rgba(5, 120, 255, 0.1);
+    border: 0;
+}
+
+.changeStationButton {
+    border: 1px solid #0578FF;
+    border-radius: 10px;
+    background-color: transparent;
+    font-weight: 500;
+    font-size: 12px;
+    width: 179px;
+    height: 34px;
+}
+
+.cancelButton {
+    border: 0;
+    background-color: transparent;
+    color: #FF6060;
+    font-weight: 600;
+    font-size: 16px;
+    width: 100%;
+    padding: 2%;
 }

@@ -1,6 +1,8 @@
 .homeContainer {
     width: 100%;
     margin: 0 !important;
+    padding-bottom: 16px;
+    min-height: 769px;
 }
 
 .homelogo {
@@ -13,7 +15,7 @@
 
 .imgStyle {
     width: 80%;
-    height: 106%;
+    height: 769px;
     float: right;
     margin-left: 6%;
 }
@@ -125,8 +127,11 @@
 @media screen and (max-width:600px) {
     .imgStyle {
         position: unset;
-        width: 100%;
+        width: 90%;
         height: 70%;
+        float: none;
+        margin-bottom: 5%;
+        margin-left: 1%;
     }
 
     .row {
@@ -140,8 +145,12 @@
     .calendarIcon {
         width: 25px;
         height: 25px;
-        top: -35px !important;
-        left: 100% !important;
+        top: -40px !important;
+        left: 87% !important;
+    }
+
+    .buttonstyle {
+        margin-top: 10px;
     }
 
 }

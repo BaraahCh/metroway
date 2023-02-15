@@ -1,0 +1,30 @@
+@media screen and (max-width:600px) {
+
+    .mobileFlexRow {
+        display: flex !important;
+    }
+
+    .vector {
+        display: none;
+    }
+}
+
+.cardDate {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 21px;
+}
+
+.cardTime {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 10px;
+}
+
+.timeDiff {
+    font-weight: 500;
+    font-size: 10px;
+    line-height: 15px;
+    color: rgba(128, 128, 128, 0.5);
+}

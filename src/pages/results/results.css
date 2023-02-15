@@ -1,6 +1,7 @@
 .resultsContainer {
     background-color: #F5F5F5;
     padding-top: 50px;
+    padding-bottom: 25px;
 }
 
 .title {
@@ -73,18 +74,7 @@
     background: rgba(5, 120, 255, 1);
 }
 
-.cardDate {
-    font-weight: 500;
-    font-size: 14px;
-    line-height: 21px;
-}
 
-.cardTime {
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 17px;
-    margin-top: 10px;
-}
 
 .rectangles {
     display: flex;
@@ -102,6 +92,7 @@
     margin-right: 5px;
     padding: 5px;
     min-height: 40px;
+    cursor: pointer;
 }
 
 .greenRect {
@@ -133,20 +124,35 @@
     .mobileFlexRow {
         display: flex !important;
     }
-
-    .vector {
-        display: none;
-    }
 }
 
-.timeDiff {
-    font-weight: 500;
-    font-size: 10px;
-    line-height: 15px;
-    color: rgba(128, 128, 128, 0.5);
-}
+
 
 .calendar {
     margin-top: 10px;
     width: 100%;
+}
+
+.calendarButton {
+    width: 60px !important;
+    margin: 10px;
+    border-radius: 10px;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    text-align: center;
+    color: #202020;
+    border: 0;
+    background-color: white;
+    height: 70px;
+}
+
+.arrowButton {
+    height: 70px;
+    border: 0;
+    width: 30px !important;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 25px;
+    background-color: transparent;
 }

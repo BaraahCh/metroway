@@ -4,7 +4,8 @@ import Home from "./pages/home/Home";
 import Footer from "./components/footer/Footer";
 import Results from "./pages/results/Results";
 import Review from "./pages/review/Review";
-
+import PaymentPage from './pages/payment/PaymentPage';
+import PaymentReview from './pages/paymentreview/PaymentReview';
 function App() {
   return (
 
@@ -12,9 +13,10 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/results/:origin/:destination/:date" element={<Results />} />
+        <Route path="/results" element={<Results />} />
         <Route path="/review" element={<Review />} />
-
+        <Route path="/payment" element={<PaymentPage />} />
+        <Route path="/paymentreview" element={<PaymentReview />} />
       </Routes >
 
 

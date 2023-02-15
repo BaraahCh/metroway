@@ -2,58 +2,164 @@ import React, { useEffect, useState } from 'react';
 import Topbar from '../../components/topbar/Topbar';
 import { Container, Col, Row, Card, Spinner } from "react-bootstrap";
 import "./results.css";
-import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import data from "../../train_results.json";
-import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import Frame5 from '../../images/Frame5.png';
+import Frame6 from '../../images/Frame6.png';
+import Ticket from '../../components/ticket/Ticket';
 
-export default function Results(props) {
-    const { origin, destination, date } = useParams();
-    const [results, setResults] = useState([]);
+export default function Results() {
+    const navigate = useNavigate();
+    // Get the search parameters from local storage
+    const searchParams = JSON.parse(localStorage.getItem("searchParams"));
+    const [results, setResults] = useState([]); // The array of the trains that will be displayed as the search results
     const [from, setFrom] = useState("");
     const [to, setTo] = useState("");
-    const [selectedDate, setSelectedDate] = useState();
-    const [loading, setLoading] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [currentDates, setCurrentDates] = useState([]) // The array of the dates that will be displayed in the calendar's carousel
 
     useEffect(() => {
-        getResults(origin, destination, date);
-    }, [origin, destination, date])
+        async function fillInfo() {
+            window.scroll(0, 0); // Scroll to the top of the page
+            getInfo();
+            fillDays(new Date(searchParams.date));
+            getResults(searchParams.departure, searchParams.destination, new Date(searchParams.date));
+        }
+        fillInfo()
+    }, [])
 
-    const getResults = (origin, destination, date) => {
-        setLoading(true);
-        let formattedDate = date.split(" ").join("/");
-        setResults(data.filter(d => d.origin === origin && d.destination === destination && d.date === formattedDate));
-        setLoading(false);
+    /**
+     *  Fill the inputs with the information saved in local storage and select the choosen date in the calendar's carousel
+     * */
+    const getInfo = () => {
+        setFrom(searchParams.departure);
+        setTo(searchParams.destination);
+        setSelectedDate(new Date(searchParams.date));
     }
 
-    const dateFormatter = (date) => {
-        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-        let d = date.split(" ")[0].split("/");
-        return months[d[0] - 1] + " " + d[1]
+    /** This funtion helps in finding the available trains 
+      *  which have the same origin, destination and date passed as parameters,
+      *  and wich have the number of available seats greater or equal to the choosen number of passengers.
+      *  If there are no trains available it sets the results array as empty [].
+    **/
+    const getResults = (selectedOrigin, selectedDestination, selectedD) => {
+        let res = data.filter(d => d.origin.toLocaleLowerCase() === selectedOrigin.toLocaleLowerCase() && d.destination.toLocaleLowerCase() === selectedDestination.toLocaleLowerCase() && dateFormat(d.date, d.time_depart).toString() === selectedD.toString() && searchParams.passengersNb <= d.available_seats);
+        if (res) setResults(res);
+        else setResults([]);
     }
 
-    const tConvert = (time) => {
-        const [hourString, minute] = time.split(":");
-        const hour = +hourString % 24;
-        return (hour % 12 || 12) + ":" + minute + (hour < 12 ? " AM" : " PM");
-    }
-
-    const getTimeDiff = (date1, date2) => {
-        let splittedDate1 = date1.split(" ")[0].split("/");
-        let splittedTime1 = date1.split(" ")[1].split(":");
-        let splittedDate2 = date2.split(" ")[0].split("/");
-        let splittedTime2 = date2.split(" ")[1].split(":");
-        let time1 = new Date(splittedDate1[2], splittedDate1[1] - 1, splittedDate1[0], splittedTime1[0], splittedTime1[1])
-        let time2 = new Date(splittedDate2[2], splittedDate2[1] - 1, splittedDate2[0], splittedTime2[0], splittedTime2[1])
-        var diff = (time2 - time1) / 1000;
-        let hours = diff / (60 * 60);
-        let minutes = (diff / 60) % 60;
-        return Math.abs(Math.floor(hours)) + " hours" + " " + minutes + " minutes";
-    }
-
+    /** 
+       * This function is called when the user click on the "Search for trains" button, 
+       * it will change the results based on the origin and destination passed in the input fields
+    **/
     const handleSubmit = (e) => {
         e.preventDefault();
         getResults(from, to, selectedDate);
+    }
+
+    /**
+       * This function takes a date and adds a number of days to it.
+       * It returns a new date object with the date set to the date passed as parameter plus the number of days passed in.
+    **/
+    const addDays = (date, days) => {
+        var result = new Date(date);
+        result.setDate(result.getDate() + days);
+        return result;
+    }
+
+    /**
+        * This function fills the 6 dates of the carousel's calendar in the currentDates array.
+    **/
+    const fillDays = (sd) => {
+        let datesArray = [];
+
+        // Fill the date passed as parameter and 2 dates from 2 previous days in the currentDates array
+        for (let i = 2; i >= 0; i--) {
+            datesArray.push(addDays(sd, -i).toString().split(" "));
+        }
+
+        // Fill 3 dates from 3 days after the date passed as parameters in the currentDates array
+        for (let i = 1; i <= 3; i++) {
+            datesArray.push(addDays(sd, i).toString().split(" "));
+        }
+        setCurrentDates(datesArray);
+        /*  The dates are converted to strings then splitted by empty space " ".
+            The currentDates array will look like this : 
+                [   ['Sun', 'Jan', '29', '2023', '08:00:00', 'GMT+0300', '(GMT+03:00)'],
+                    ['Mon', 'Jan', '30', '2023', '08:00:00', 'GMT+0300', '(GMT+03:00)'],
+                    ...
+                ] */
+    }
+
+
+    /**
+     * This function is called when the user click on one of the dates in the calendar's carousel.
+     * It changes the trains results based on the selected date
+     *  */
+    const handleCalendarButtonClicked = (d) => {
+        let newDate = new Date(d.join(" "));
+        getResults(from, to, newDate);
+        setSelectedDate(newDate);
+    }
+
+
+    /**
+     * This function is called when the user clicks on the ">" button in the calendar's carousel.
+     * it removes the first date from the currentDates array,
+     * and adds the date after one day of the last date in it.
+     * And it sets the selected date one day after.
+     */
+    const handleNextClick = () => {
+        let datesArray = currentDates;
+        datesArray.push(addDays(new Date(datesArray[5].join(" ")), 1).toString().split(" "))
+        datesArray.splice(0, 1);
+        let newDate = addDays(selectedDate, 1)
+        getResults(from, to, newDate);
+        setSelectedDate(newDate);
+        setCurrentDates(datesArray);
+    }
+
+
+    /**
+     * This function is called when the user clicks on the "<" button in the calendar's carousel.
+     * it removes the last date from the currentDates array,
+     * and adds the date before one day of the first date in it.
+     * And it sets the selected date one day before.
+     */
+    const handlePreviousClick = () => {
+        let datesArray = currentDates;
+        datesArray.splice(5, 1);
+        datesArray.splice(0, 0, addDays(new Date(datesArray[0].join(" ")), -1).toString().split(" "))
+        let newDate = addDays(selectedDate, -1)
+        getResults(from, to, newDate);
+        setSelectedDate(newDate);
+        setCurrentDates(datesArray);
+    }
+
+
+    /**
+     * This function is called when the user clicks on one of the colored card in the ticket.
+     * It saves the ticket's properties to the local storage and navigates the user to the Review Ticket page.
+     * If the user clicks on a card which is not available it will alert "Not Available!".
+     */
+    const handleTicketClick = (r, price, ticketClass) => {
+        if (!price) {
+            alert("Not Available!");
+            return;
+        }
+        localStorage.setItem("ticket", JSON.stringify({ ticket: r, price: price, ticketClass: ticketClass, total: (searchParams.passengersNb * price) + 500 }));
+        navigate("/review");
+    }
+
+    /**
+     * It takes a date and time string.
+     * @returns A date object.
+     */
+    const dateFormat = (date, time) => {
+        let splittedDate = date.split("/");
+        let splittedTime = time.split(":");
+        return new Date(splittedDate[2], splittedDate[0] - 1, splittedDate[1], splittedTime[0], splittedTime[1]);
     }
 
     return (
@@ -87,8 +193,16 @@ export default function Results(props) {
                                         />
                                     </Col>
                                 </Row>
-                                <Row><Col><button className="buttonstyle mt-4" type="submit" >Search for trains</button></Col></Row>
-                                <Calendar className="calendar" onChange={(date) => setSelectedDate(date)} value={selectedDate} />
+                                <Row><Col><button className="buttonstyle mt-4 mb-4" type="submit" >Search for trains</button></Col></Row>
+                                <Row>
+                                    <button onClick={handlePreviousClick} className='arrowButton blueFont'><i className='fa fa-angle-left '></i></button>
+                                    {selectedDate && currentDates && currentDates.length > 0 && currentDates.map(d => (
+                                        <button onClick={() => handleCalendarButtonClicked(d)} className={new Date(d.join(" ")).toString() === selectedDate.toString() ? 'calendarButton blueBackground' : "calendarButton"}>{d[0]}<br />{d[2]}</button>
+                                    ))}
+                                    <button onClick={handleNextClick} className='arrowButton blueFont'><i className='fa fa-angle-right '></i></button>
+                                    <img style={{ marginTop: "15px" }} src={Frame5} alt="Frame5" />
+                                    <img style={{ marginTop: "15px" }} src={Frame6} alt="Frame6" />
+                                </Row>
                             </form>
                         </Col>
                         <Col lg={7}>
@@ -99,66 +213,42 @@ export default function Results(props) {
                                 </div>
                             </div>
                             <div className="scrollable">
-                                {!loading && results && results.length > 0 ?
+                                {results && results.length > 0 ?
                                     results.map(r => (
                                         <Card className="blackFont" key={r.flight_id}>
-                                            <Row className="mobileFlexRow">
-                                                <Col className="d-flex flex-column">
-                                                    <span className="cardDate">{dateFormatter(r.date_time_depart)}</span>
-                                                    <span className="cardTime d-flex flex-column">
-                                                        <span>{tConvert(r.time_depart)}</span>
-                                                        <span>{r.origin}</span>
-                                                    </span>
-                                                </Col>
-                                                <Col className="d-flex flex-column align-items-center">
-                                                    <span className="timeDiff">{getTimeDiff(r.date_time_depart, r.date_time_arrival)}</span>
-
-                                                    <svg className="vector" width="300" height="6" viewBox="0 0 542 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M0.333333 3C0.333333 4.47276 1.52724 5.66667 3 5.66667C4.47276 5.66667 5.66667 4.47276 5.66667 3C5.66667 1.52724 4.47276 0.333333 3 0.333333C1.52724 0.333333 0.333333 1.52724 0.333333 3ZM536.333 3C536.333 4.47276 537.527 5.66667 539 5.66667C540.473 5.66667 541.667 4.47276 541.667 3C541.667 1.52724 540.473 0.333333 539 0.333333C537.527 0.333333 536.333 1.52724 536.333 3ZM3 3.5H539V2.5H3V3.5Z" fill="#808080" fill-opacity="0.75" />
-                                                    </svg>
-
-                                                </Col>
-                                                <Col align="right" className="d-flex flex-column">
-                                                    <span className="cardDate">{dateFormatter(r.date_time_arrival)}</span>
-                                                    <span className="cardTime d-flex flex-column">
-                                                        <span>{tConvert(r.time_arrival)}</span>
-                                                        <span>{r.destination}</span>
-                                                    </span>
-                                                </Col>
-                                            </Row>
-
+                                            <Ticket origin={r.origin} destination={r.destination} time_depart={r.time_depart} time_arrival={r.time_arrival} date_time_depart={r.date_time_depart} date_time_arrival={r.date_time_arrival} />
                                             <Row className="rectangles">
-                                                <Col className="greenRect rect">
+                                                <Col className="greenRect rect" onClick={() => handleTicketClick(r, 800, "3A")}>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>3A</span>
                                                         <span align="right">Avl - 046</span>
                                                     </div>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>Tatkal</span>
-                                                        <span align="right">$800</span>
+                                                        <span align="right">₹800</span>
                                                     </div>
                                                 </Col>
-                                                <Col className="orangeRect rect">
+                                                <Col className="orangeRect rect" onClick={() => handleTicketClick(r, 1000, "2A")}>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>2A</span>
                                                         <span align="right">Avl - 006</span>
                                                     </div>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>Tatkal</span>
-                                                        <span align="right">$1000</span>
+                                                        <span align="right">₹1000</span>
                                                     </div>
                                                 </Col>
-                                                <Col className="pinkRect rect">
+                                                <Col className="pinkRect rect" onClick={() => handleTicketClick(r, 1200, "1A")}>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>1A</span>
                                                         <span align="right">WL - 36</span>
                                                     </div>
                                                     <div className="d-flex flex-row justify-content-between mobileFlexRow">
                                                         <span>Tatkal</span>
-                                                        <span align="right">$1200</span>
+                                                        <span align="right">₹1200</span>
                                                     </div>
                                                 </Col>
-                                                <Col className="whiteRect rect" align="center">
+                                                <Col className="whiteRect rect" align="center" onClick={() => handleTicketClick(r, "", "")}>
                                                     <span align="center">SL<br />Not Available</span>
                                                 </Col>
                                             </Row>
@@ -167,13 +257,7 @@ export default function Results(props) {
                                             </Row>
 
                                         </Card>
-                                    )) : loading ?
-                                        <div align="center">
-                                            <Spinner animation="border" role="status" variant="primary" >
-                                                <span className="visually-hidden">Loading...</span>
-                                            </Spinner>
-                                        </div>
-                                        : ""}
+                                    )) : <h5 align="center" style={{ color: "red" }}>No Results!</h5>}
                             </div>
                         </Col>
                     </Row>
